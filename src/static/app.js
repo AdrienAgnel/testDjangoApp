@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import * as _ from 'lodash';
 
 import { authLogoutAndRedirect } from './actions/auth';
 import './styles/main.scss';
@@ -65,7 +66,7 @@ class App extends React.Component {
                                 <span className="icon-bar" />
                             </button>
                             <a className="navbar-brand" onClick={this.goToIndex}>
-                                Django React Redux Demo
+                                Django React Redux Demo {_.map([1,2], (val) => 2*val)}
                             </a>
                         </div>
                         <div className="collapse navbar-collapse" id="top-navbar">
