@@ -1,4 +1,5 @@
 import React from 'react';
+import { Form, Text } from 'react-form';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import classNames from 'classnames';
@@ -48,6 +49,28 @@ class App extends React.Component {
         const loginClass = classNames({
             active: this.props.location && this.props.location.pathname === '/login'
         });
+
+        const myForm = (
+          <Form
+            onSubmit={(values) => {
+              console.log('Success!', values)
+            }}
+            validate={({ name }) => {
+              return {
+                name: !name ? 'A name is required' : undefined
+              }
+            }}
+          >
+            {({submitForm}) => {
+              return (
+                <form onSubmit={submitForm}>
+                  <Text field='name' />
+                  <button type='submit'>Submit</button>
+                </form>
+              )
+            }}
+          </Form>
+        )
 
         return (
             <div className="app">
@@ -105,6 +128,7 @@ class App extends React.Component {
                         </div>
                     </div>
                 </nav>
+                {this.myForm}
 
                 <div>
                     {this.props.children}
